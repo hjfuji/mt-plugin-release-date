@@ -1,0 +1,19 @@
+<mtapp:setting
+   id="reldate_system"
+   label="<__trans phrase="Setting of ReleaseDate plugin">">
+<p>
+<__trans phrase="To run setting, click below link.">
+</p>
+<mt:loop name="fj_reldate_websites">
+  <mt:if name="__first__"><ul></mt:if>
+  <li><__trans phrase="Website [_1]" params="<mt:var name="website_name">">
+  <ul style="margin-bottom : 0.5em;">
+    <li style="margin-bottom : 0; padding-left : 1em;"><a href="<mt:var name="script_url">?__mode=cfg_plugins&blog_id=<mt:var name="website_id">"><__trans phrase="Run setting of website '[_1]'" params="<mt:var name="website_name">"></a></li>
+    <mt:loop name="blogs">
+    <li style="margin-bottom : 0; padding-left : 1em;"><a href="<mt:var name="script_url">?__mode=cfg_plugins&blog_id=<mt:var name="blog_id">"><__trans phrase="Run setting of blog '[_1]'" params="<mt:var name="blog_name">"></a></li>
+    </mt:loop>
+  </ul>
+  </li>
+  <mt:if name="__last__"></ul></mt:if>
+</mt:loop>
+</mtapp:setting>

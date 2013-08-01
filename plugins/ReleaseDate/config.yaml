@@ -1,0 +1,49 @@
+#
+# ReleaseDate
+# 2005/04/04 0.01 First version
+# 2005/04/20 0.02 Modified
+# 2005/10/29 1.10 For Movable Type 3.2
+# 2006/03/06 1.11 Bug fix for preview_entry page
+# 2006/07/01 1.20 For Movable Type 3.3
+# 2007/06/25 1.30 For Movable Type 4
+# 2009/09/17 1.40 For Movable Type 5
+# 2013/07/31 1.41 For Movabel Type 6
+#
+# Copyright(c) by H.Fujimoto
+#
+name: Release Date
+id: ReleaseDate
+description: <__trans phrase="Auto update publish date of entry / page.">
+author_name: <__trans phrase="Hajime Fujimoto">
+author_link: http://www.h-fj.com/blog/
+doc_link: http://www.h-fj.com/blog/mt5plgdoc/releasedate.php
+l10n_class: ReleaseDate::L10N
+version: 1.41
+blog_config_template: $ReleaseDate::ReleaseDate::Plugin::reldate_blog_config_template
+system_config_template: system_config_template.tmpl
+blog_config_template: blog_config_template.tmpl
+settings:
+  reldate_ischeck:
+    Default: 1
+  reldate_ischeck_page:
+    Default: 1
+callbacks:
+  init_app: $ReleaseDate::ReleaseDate::Plugin::init_app
+  cms_pre_save.entry:
+    handler: $ReleaseDate::ReleaseDate::Plugin::releasedate
+    priority: 9
+  cms_post_save.entry:
+    handler: $ReleaseDate::ReleaseDate::Plugin::update_hash
+    priority: 9
+  cms_pre_save.page:
+    handler: $ReleaseDate::ReleaseDate::Plugin::releasedate
+    priority: 9
+  cms_post_save.page:
+    handler: $ReleaseDate::ReleaseDate::Plugin::update_hash
+    priority: 9
+  MT::App::CMS::template_param.edit_entry:
+    handler: $ReleaseDate::ReleaseDate::Plugin::add_checkbox
+    priority: 9
+  MT::App::CMS::template_param.preview_strip:
+    handler: $ReleaseDate::ReleaseDate::Plugin::add_checkbox_preview
+    priority: 9
